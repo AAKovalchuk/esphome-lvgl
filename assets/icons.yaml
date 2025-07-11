@@ -20,4 +20,4 @@ substitutions:
   ledstrip2:      "\U000F07D6"
   lightbulb:      "\U000F0335"
   nightlight:     "\U000F1A4C"
-  lightbulb-on:   "\U000F06E8"
+  lightbulbon:   "\U000F06E8"
