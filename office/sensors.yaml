@@ -22,6 +22,55 @@ sensor:
             args: [ '(int)round(x)', '(int)round(id(office_temperature).state)' ]
 
 
+  - platform: homeassistant
+    entity_id: sensor.karyna_clock_karina_room_co2
+    id: karina_room_co2
+    on_value:
+      - lvgl.label.update:
+          id: temperatures
+          text:
+            format: "%d° / %d°"
+            args: [ '(int)round(x)', '(int)round(id(office_temperature).state)' ]
+
+  # Karina Room Humidity
+  - platform: homeassistant
+    entity_id: sensor.karyna_clock_karina_room_humidity
+    id: karina_room_humidity
+    on_value:
+      - lvgl.table.update:
+          id: sensor_table
+          row: 1
+          col: 1
+          text:
+            format: "%d%%"
+            args: [ '(int)round(x)' ]
+
+  # Karina Room Temperature
+  - platform: homeassistant
+    entity_id: sensor.karyna_clock_karina_room_temperature
+    id: karina_room_temperature
+    on_value:
+      - lvgl.table.update:
+          id: sensor_table
+          row: 1
+          col: 0
+          text:
+            format: "%d°"
+            args: [ '(int)round(x)' ]
+
+  # Karina Room CO2
+  - platform: homeassistant
+    entity_id: sensor.karyna_clock_karina_room_co2
+    id: karina_room_co2
+    on_value:
+      - lvgl.table.update:
+          id: sensor_table
+          row: 1
+          col: 2
+          text:
+            format: "%d ppm"
+            args: [ '(int)round(x)' ]
+
 binary_sensor:
 
   # Office Evening Scene
@@ -34,5 +83,7 @@ binary_sensor:
         lvgl.widget.update:
           id: office_scene_evening_button
           state:
-            checked: !lambda return x;
+            checked:
+              lambda: |-
+                return x;
 
